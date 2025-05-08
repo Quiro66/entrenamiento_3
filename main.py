@@ -74,6 +74,7 @@ def deleted_product():
                 print("Product no found")
                 return 
             del products[name_search]
+            print(f"Deleted ")
             return False
         except ValueError:
             print("Error, enter a valid value")
@@ -81,13 +82,31 @@ def deleted_product():
 def cal_inventory_value(products):
     total = sum(map(lambda product: product['price'] * product['quantity'], products.values()))
     return total
-    
-add_product()
-add_product()
-search_product()
-update_price_product()
-deleted_product()
 
-# Calculate inventory value
-total_value = cal_inventory_value(products)
-print(f"Total value of inventory: {total_value}")
+def menu():
+    opcion = {
+        "1": add_product,
+        "2": search_product,
+        "3": update_price_product,
+        "4": deleted_product,
+        "5": cal_inventory_value,
+        "6": exit
+    }
+
+    while True:
+        print("\nInventory management")
+        print("1. Add product")
+        print("2. Search product")
+        print("3. Update price product")
+        print("4. Deleted product")
+        print("5. calculate inventory value")
+        print("6. Exit")
+
+        action = input("Choose an option: ").strip()
+        if action in opcion:
+            opcion[action]()
+        else:
+            print("Invalid option.")
+
+if __name__ == "__main__":
+    menu()
