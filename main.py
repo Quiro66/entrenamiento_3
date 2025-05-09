@@ -12,7 +12,7 @@ def add_product():
                 return
             price = int(input("Add the product price: "))
             try:
-                quantity = int(input("Add the product amount: "))
+                quantity = int(input("Add the product quantity: "))
                 if quantity < 1:
                     print("Quantity must be greater than 0.")
                     return
@@ -37,7 +37,7 @@ def search_product():
             if not product:
                 print("Product no found")
                 return
-            print(f"\n Name: {name_search}\n Price: {product['price']}\n Quantity: {product['quantity']}")
+            print(f"\n Name: {name_search}\n Price: ${product['price']}\n Quantity: {product['quantity']}")
             return False
         except ValueError:
             print("Error, enter a valid value")
@@ -51,12 +51,12 @@ def update_price_product():
             if not product:
                 print("Product no found")
                 return True
-            print(f"Name: {name_search}\n Price: {product['price']}\n Quantity: {product['quantity']}")
+            print(f"Name: {name_search}\n Price: ${product['price']}\n Quantity: {product['quantity']}")
             change_price = int(input("Add the new price of the product: "))
             if change_price > 0:
                 product['price'] = change_price
                 print("Product price updated.")
-                print(f"Name: {name_search}\n Price: {product['price']}\n Quantity: {product['quantity']}")
+                print(f"Name: {name_search}\n Price: ${product['price']}\n Quantity: {product['quantity']}")
                 return False
             else:
                 print("the price is invalid")
@@ -79,10 +79,9 @@ def deleted_product():
         except ValueError:
             print("Error, enter a valid value")
 
-def cal_inventory_value(products):
+def cal_inventory_value():
     total = sum(map(lambda product: product['price'] * product['quantity'], products.values()))
-    return total
-
+    print(f"The total of the product is: ${total}")
 def menu():
     opcion = {
         "1": add_product,
